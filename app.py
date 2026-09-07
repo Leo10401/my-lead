@@ -4,12 +4,32 @@ Spatial UI — native Streamlit patterns, no custom CSS
 """
 
 import glob
+import subprocess
+import sys
 import time
 import traceback
 
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+
+
+# ─── Playwright browser bootstrap ─────────────────────────────────────────────
+# Streamlit Cloud has no Chromium binary pre-installed.
+# This runs once per server session (cached) and is transparent to the user.
+
+@st.cache_resource(show_spinner=False)
+def _install_playwright_browsers() -> str:
+    """Install Playwright Chromium binary if it is missing. Runs once per session."""
+    result = subprocess.run(
+        [sys.executable, "-m", "playwright", "install", "chromium", "--with-deps"],
+        capture_output=True,
+        text=True,
+    )
+    return result.stdout + result.stderr
+
+_install_playwright_browsers()
+
 
 st.set_page_config(
     page_title="Devtacet Lead Pipeline",
