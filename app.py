@@ -567,20 +567,31 @@ with tab_explore:
                             st.caption(f":material/report: {reasons}")
 
                     with links_col:
-                        if row.get("website"):
+                        website_url = str(row.get("website", "") or "").strip()
+                        if website_url and website_url.lower() != "nan" and website_url.startswith(("http://", "https://")):
                             st.link_button(
                                 "Visit website",
-                                url=row["website"],
+                                url=website_url,
                                 icon=":material/open_in_new:",
                             )
-                        if row.get("maps_url"):
+                        elif website_url and website_url.lower() != "nan":
+                            st.link_button(
+                                "Visit website",
+                                url=f"https://{website_url}",
+                                icon=":material/open_in_new:",
+                            )
+
+                        maps_url = str(row.get("maps_url", "") or "").strip()
+                        if maps_url and maps_url.lower() != "nan" and maps_url.startswith(("http://", "https://")):
                             st.link_button(
                                 "Google Maps",
-                                url=row["maps_url"],
+                                url=maps_url,
                                 icon=":material/map:",
                             )
-                        if row.get("phone"):
-                            st.caption(f":material/call: `{row['phone']}`")
+
+                        phone_val = str(row.get("phone", "") or "").strip()
+                        if phone_val and phone_val.lower() != "nan":
+                            st.caption(f":material/call: `{phone_val}`")
 
                     with st.expander(
                         f"Generate outreach pitch for {row.get('name')}",
