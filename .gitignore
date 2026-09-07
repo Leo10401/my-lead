@@ -1,0 +1,47 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environment ───────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Streamlit secrets (never commit) ─────────────────────────────────────────
+.streamlit/secrets.toml
+
+# ── Generated CSV lead output (runtime data, not source code) ─────────────────
+*.csv
+
+# ── OS & editor noise ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# ── AI/IDE agent tooling (dev-only, not needed for deployment) ────────────────
+.agents/
+.claude/
+
+# ── Playwright browser binaries (re-downloaded via `playwright install`) ──────
+playwright-browsers/
+ms-playwright/
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+*.log
+*.tmp
+.env
+.env.*
