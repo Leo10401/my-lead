@@ -22,9 +22,30 @@ from playwright.sync_api import sync_playwright
 class GoogleMapsScraper:
     def __init__(self, headless: bool = True, slow_mo: int = 0):
         self._playwright = sync_playwright().start()
-        self.browser = self._playwright.chromium.launch(
-            headless=headless, slow_mo=slow_mo
-        )
+        launch_args = [
+            "--no-sandbox",
+            "--disable-setuid-sandbox",
+            "--disable-dev-shm-usage",
+            "--disable-gpu",
+            "--no-first-run",
+            "--no-zygote",
+            "--single-process",
+        ]
+        try:
+            self.browser = self._playwright.chromium.launch(
+                headless=headless,
+                slow_mo=slow_mo,
+                args=launch_args,
+            )
+        except Exception:
+            # If binary was not found, trigger install and retry
+            import subprocess, sys
+            subprocess.run([sys.executable, "-m", "playwright", "install", "chromium"], check=True)
+            self.browser = self._playwright.chromium.launch(
+                headless=headless,
+                slow_mo=slow_mo,
+                args=launch_args,
+            )
         self.context = self.browser.new_context(
             locale="en-US",
             viewport={"width": 1366, "height": 900},

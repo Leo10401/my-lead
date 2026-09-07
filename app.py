@@ -16,19 +16,22 @@ import plotly.express as px
 
 # ─── Playwright browser bootstrap ─────────────────────────────────────────────
 # Streamlit Cloud has no Chromium binary pre-installed.
-# This runs once per server session (cached) and is transparent to the user.
+# This ensures chromium and chromium-headless-shell are installed in the cloud container.
 
 @st.cache_resource(show_spinner=False)
-def _install_playwright_browsers() -> str:
-    """Install Playwright Chromium binary if it is missing. Runs once per session."""
-    result = subprocess.run(
-        [sys.executable, "-m", "playwright", "install", "chromium", "--with-deps"],
-        capture_output=True,
-        text=True,
-    )
-    return result.stdout + result.stderr
+def ensure_playwright_browsers() -> None:
+    """Ensure Playwright Chromium is installed."""
+    try:
+        subprocess.run(
+            [sys.executable, "-m", "playwright", "install", "chromium"],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except Exception as e:
+        st.warning(f"Note: Playwright browser check: {e}")
 
-_install_playwright_browsers()
+ensure_playwright_browsers()
 
 
 st.set_page_config(
