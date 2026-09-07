@@ -10,3 +10,9 @@ libxfixes3
 libxrandr2
 libgbm1
 libasound2
+libcairo2
+libpango-1.0-0
+libpangocairo-1.0-0
+libx11-xcb1
+libxcb-dri3-0
+libxtst6
