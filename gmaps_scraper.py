@@ -22,21 +22,36 @@ from playwright.sync_api import sync_playwright
 class GoogleMapsScraper:
     def __init__(self, headless: bool = True, slow_mo: int = 0):
         self._playwright = sync_playwright().start()
-        # Container-tested flags for Chromium in Linux (Docker / Streamlit Cloud)
+        # Robust Chromium flags for constrained Linux containers
         launch_args = [
             "--no-sandbox",
             "--disable-setuid-sandbox",
             "--disable-dev-shm-usage",
             "--disable-gpu",
             "--disable-software-rasterizer",
-            "--disable-extensions",
             "--no-first-run",
+            "--disable-background-networking",
+            "--disable-default-apps",
+            "--disable-sync",
+            "--disable-translate",
+            "--mute-audio",
+            "--headless=new",
         ]
+        
+        executable_path = None
+        # Check if system chromium is installed from apt
+        for p in ["/usr/bin/chromium", "/usr/bin/chromium-browser"]:
+            import os
+            if os.path.exists(p):
+                executable_path = p
+                break
+
         try:
             self.browser = self._playwright.chromium.launch(
                 headless=headless,
                 slow_mo=slow_mo,
                 args=launch_args,
+                executable_path=executable_path,
             )
         except Exception:
             import subprocess, sys
