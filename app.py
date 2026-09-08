@@ -41,6 +41,27 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+st.markdown(
+    """
+    <style>
+    div[data-testid="stMetric"] {
+        transition: transform 120ms ease, border-color 120ms ease;
+    }
+    div[data-testid="stMetric"]:hover {
+        transform: translateY(-2px);
+    }
+    div[data-testid="stVerticalBlockBorderWrapper"] {
+        transition: border-color 150ms ease;
+    }
+    div[data-testid="stVerticalBlockBorderWrapper"]:hover {
+        border-color: #33D6A6 !important;
+    }
+    h3 { letter-spacing: -0.01em; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # ─── Helpers ────────────────────────────────────────────────────────────────
 
 SERVICE_COLORS = {
@@ -140,8 +161,22 @@ def load_dataset(path_or_file) -> pd.DataFrame:
 # ─── Sidebar ─────────────────────────────────────────────────────────────────
 
 with st.sidebar:
-    st.title("Devtacet", anchor=False)
-    st.caption("Lead Intelligence Pipeline")
+    st.markdown(
+        """
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" stroke="#33D6A6" stroke-width="1.6"/>
+                <circle cx="12" cy="12" r="3" fill="#FF5A4E"/>
+            </svg>
+            <div>
+                <div style="font-weight:700;font-size:1.05rem;line-height:1.2;">Devtacet</div>
+                <div style="font-size:0.75rem;color:#8B93A0;">Lead Intelligence Pipeline</div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.write("")
 
     available_files = sorted(glob.glob("*.csv"))
 
@@ -266,10 +301,6 @@ def apply_filters(df: pd.DataFrame) -> pd.DataFrame:
         ("has_schema_markup","Present"):lambda d: d[d["has_schema_markup"] == True],
         ("has_schema_markup","Missing"):lambda d: d[(d["has_website"] == True) & (d["has_schema_markup"] == False)],
     }
-    for (col, val), fn in bool_map.items():
-        fval = locals().get(f"f_{col.split('_')[0]}", "All") if col != "has_schema_markup" else f_schema
-        # resolve the right filter variable
-    # Apply each filter directly
     for (col, val), fn in bool_map.items():
         filter_val = {
             "has_website":     f_website,

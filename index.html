@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>my lead — find the businesses whose websites are costing them customers</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body{ font-family:'Inter',sans-serif; }
+  .font-display{ font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em; }
+  .font-mono{ font-family:'JetBrains Mono',monospace; }
+  .scan-sweep{
+    position:relative; height:2px;
+    background:linear-gradient(90deg, transparent, #33D6A6, transparent);
+    animation:sweep 4s ease-in-out infinite;
+  }
+  @keyframes sweep{
+    0%{ transform:translateY(0); opacity:0; }
+    8%{ opacity:1; } 45%{ transform:translateY(96px); opacity:1; }
+    52%{ opacity:0; } 100%{ opacity:0; transform:translateY(96px); }
+  }
+  .reveal-row{ opacity:0; animation:revealRow 4s ease forwards infinite; }
+  .reveal-row:nth-child(1){ animation-delay:.4s; }
+  .reveal-row:nth-child(2){ animation-delay:.9s; }
+  .reveal-row:nth-child(3){ animation-delay:1.4s; }
+  .reveal-row:nth-child(4){ animation-delay:1.9s; }
+  @keyframes revealRow{
+    0%{ opacity:0; transform:translateX(-4px); }
+    8%{ opacity:1; transform:translateX(0); }
+    85%{ opacity:1; } 92%{ opacity:0; } 100%{ opacity:0; }
+  }
+  .verdict-in{ opacity:0; animation:verdictIn 4s ease forwards infinite; animation-delay:2.5s; }
+  @keyframes verdictIn{
+    0%{ opacity:0; transform:translateY(4px); } 10%{ opacity:1; transform:translateY(0); }
+    88%{ opacity:1; } 100%{ opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .scan-sweep, .reveal-row, .verdict-in{ animation:none !important; opacity:1 !important; transform:none !important; }
+  }
+</style>
+</head>
+<body class="bg-[#0A0D12] text-[#ECEAE2] antialiased">
+
+  <div class="max-w-[1200px] mx-auto px-3 sm:px-5 pt-3 sm:pt-5">
+
+    <!-- ================= NAV ================= -->
+    <div class="sticky top-3 z-50 flex justify-center px-2">
+      <nav class="flex w-full max-w-[860px] items-center justify-between rounded-full border border-white/10 bg-[#0F141B]/85 py-2.5 pl-5 pr-2.5 backdrop-blur-xl">
+        <a href="#" class="flex items-center gap-2.5">
+          <span class="h-2 w-2 rounded-full bg-[#33D6A6] shadow-[0_0_10px_#33D6A6]"></span>
+          <span class="font-display font-semibold text-[15px]">my lead <span class="text-[#586173] font-normal">by Devtacet</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-1 text-sm text-[#8B93A0]">
+          <a href="#how" class="rounded-full px-3.5 py-2 hover:text-[#ECEAE2] hover:bg-white/5 transition">How it works</a>
+          <a href="#catches" class="rounded-full px-3.5 py-2 hover:text-[#ECEAE2] hover:bg-white/5 transition">What it catches</a>
+          <a href="#examples" class="rounded-full px-3.5 py-2 hover:text-[#ECEAE2] hover:bg-white/5 transition">Example output</a>
+          <a href="#run" class="rounded-full px-3.5 py-2 hover:text-[#ECEAE2] hover:bg-white/5 transition">Run it</a>
+        </div>
+        <a href="https://github.com/Leo10401/my-lead" class="inline-flex items-center gap-1.5 rounded-full bg-[#33D6A6] px-4 py-2 text-sm font-medium text-[#0A0D12]">
+          <i data-lucide="github" class="h-4 w-4"></i> GitHub
+        </a>
+      </nav>
+    </div>
+
+    <!-- ================= HERO ================= -->
+    <section class="grid gap-12 pt-20 pb-24 lg:grid-cols-2 lg:items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0F141B] px-4 py-1.5 text-xs font-mono text-[#8B93A0]">
+          <i data-lucide="scan-search" class="h-3.5 w-3.5 text-[#33D6A6]"></i>
+          scrapes live · self-hosted · $0 to run
+        </div>
+        <h1 class="font-display mt-6 text-[2.6rem] leading-[1.08] font-semibold sm:text-5xl">
+          Find the businesses whose websites are quietly costing them customers.
+        </h1>
+        <p class="mt-6 max-w-md text-lg leading-relaxed text-[#8B93A0]">
+          my lead scans Google Maps for businesses by city and niche, audits each
+          one's real website for the gaps that lose them customers, and tells you
+          exactly which service to pitch and why.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="https://github.com/Leo10401/my-lead" class="inline-flex items-center gap-2 rounded-full bg-[#33D6A6] px-6 py-3 text-sm font-semibold text-[#0A0D12] transition hover:bg-[#4de3b7]">
+            View the pipeline <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+          </a>
+          <a href="#run" class="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-[#ECEAE2] transition hover:border-white/40">
+            See the command
+          </a>
+        </div>
+      </div>
+
+      <!-- Scan card -->
+      <div class="rounded-2xl border border-white/10 bg-[#0F141B] p-6">
+        <p class="font-mono text-xs text-[#586173]">gmaps_scraper.py → live scan</p>
+        <div class="mt-5 rounded-xl border border-white/10 bg-[#0C1017] p-4">
+          <p class="font-display text-lg font-semibold">Sharma Family Dental</p>
+          <p class="mt-1 text-sm text-[#8B93A0]">Dentist · Aliganj, Lucknow · 4.2 ★ (38 reviews)</p>
+        </div>
+        <div class="scan-sweep my-4"></div>
+        <div class="space-y-2 font-mono text-sm">
+          <div class="reveal-row flex justify-between border-b border-dashed border-white/10 pb-2"><span class="text-[#8B93A0]">HTTPS</span><span class="font-medium text-[#FF5A4E]">missing</span></div>
+          <div class="reveal-row flex justify-between border-b border-dashed border-white/10 pb-2"><span class="text-[#8B93A0]">Mobile viewport</span><span class="font-medium text-[#FF5A4E]">not set</span></div>
+          <div class="reveal-row flex justify-between border-b border-dashed border-white/10 pb-2"><span class="text-[#8B93A0]">Site reachable</span><span class="font-medium text-[#33D6A6]">yes</span></div>
+          <div class="reveal-row flex justify-between border-b border-dashed border-white/10 pb-2"><span class="text-[#8B93A0]">Schema markup</span><span class="font-medium text-[#FF5A4E]">absent</span></div>
+        </div>
+        <div class="verdict-in mt-4 flex items-center justify-between rounded-lg border border-[#FFB74D]/40 bg-[#FFB74D]/10 px-4 py-3">
+          <span class="text-sm">Recommended: <strong>Website Redesign</strong></span>
+          <span class="font-mono font-semibold text-[#FFB74D]">47 pts</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STATS STRIP ================= -->
+    <section class="grid gap-4 border-y border-white/10 py-10 sm:grid-cols-4">
+      <div class="text-center sm:border-r sm:border-white/10">
+        <p class="font-display text-3xl font-semibold text-[#33D6A6]">6</p>
+        <p class="mt-1 text-sm text-[#8B93A0]">audit checks per website</p>
+      </div>
+      <div class="text-center sm:border-r sm:border-white/10">
+        <p class="font-display text-3xl font-semibold text-[#33D6A6]">5</p>
+        <p class="mt-1 text-sm text-[#8B93A0]">service lines mapped</p>
+      </div>
+      <div class="text-center sm:border-r sm:border-white/10">
+        <p class="font-display text-3xl font-semibold text-[#33D6A6]">1</p>
+        <p class="mt-1 text-sm text-[#8B93A0]">command to launch the full pipeline</p>
+      </div>
+      <div class="text-center">
+        <p class="font-display text-3xl font-semibold text-[#33D6A6]">$0</p>
+        <p class="mt-1 text-sm text-[#8B93A0]">to self-host and run</p>
+      </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section id="catches" class="py-24">
+      <div class="max-w-lg">
+        <p class="font-mono text-sm text-[#33D6A6]">What it does</p>
+        <h2 class="font-display mt-3 text-3xl font-semibold sm:text-4xl">Six real checks, not a black box</h2>
+        <p class="mt-4 text-[#8B93A0]">Heuristic, not a full audit — built to triage hundreds of leads fast, not replace the review you'd do before an actual pitch.</p>
+      </div>
+      <div class="mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="bg-[#0A0D12] p-7">
+          <i data-lucide="map-pin-off" class="h-5 w-5 text-[#FF5A4E]"></i>
+          <h3 class="font-display mt-4 font-semibold">No linked website</h3>
+          <p class="mt-2 text-sm leading-relaxed text-[#8B93A0]">Losing every searcher who taps through from the Maps listing.</p>
+        </div>
+        <div class="bg-[#0A0D12] p-7">
+          <i data-lucide="wifi-off" class="h-5 w-5 text-[#FF5A4E]"></i>
+          <h3 class="font-display mt-4 font-semibold">Site unreachable</h3>
+          <p class="mt-2 text-sm leading-relaxed text-[#8B93A0]">Down right now, actively bleeding traffic they don't know about.</p>
+        </div>
+        <div class="bg-[#0A0D12] p-7">
+          <i data-lucide="smartphone" class="h-5 w-5 text-[#FF5A4E]"></i>
+          <h3 class="font-display mt-4 font-semibold">No mobile viewport</h3>
+          <p class="mt-2 text-sm leading-relaxed text-[#8B93A0]">Over 75% of local search happens on phones. This alone kills conversions.</p>
+        </div>
+        <div class="bg-[#0A0D12] p-7">
+          <i data-lucide="lock-open" class="h-5 w-5 text-[#FF5A4E]"></i>
+          <h3 class="font-display mt-4 font-semibold">HTTP only</h3>
+          <p class="mt-2 text-sm leading-relaxed text-[#8B93A0]">Chrome flags the site as "not secure" the moment it loads.</p>
+        </div>
+        <div class="bg-[#0A0D12] p-7">
+          <i data-lucide="braces" class="h-5 w-5 text-[#FF5A4E]"></i>
+          <h3 class="font-display mt-4 font-semibold">No schema markup</h3>
+          <p class="mt-2 text-sm leading-relaxed text-[#8B93A0]">Invisible to rich results in Google search, even when ranked.</p>
+        </div>
+        <div class="bg-[#0A0D12] p-7">
+          <i data-lucide="shopping-bag" class="h-5 w-5 text-[#FF5A4E]"></i>
+          <h3 class="font-display mt-4 font-semibold">No booking or ordering</h3>
+          <p class="mt-2 text-sm leading-relaxed text-[#8B93A0]">Category fits an app or booking flow — they're paying third-party commission instead.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS (dark panel) ================= -->
+    <section id="how" class="py-24">
+      <div class="max-w-lg">
+        <p class="font-mono text-sm text-[#33D6A6]">How it works</p>
+        <h2 class="font-display mt-3 text-3xl font-semibold sm:text-4xl">Three steps, no manual prospecting</h2>
+      </div>
+      <div class="mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3">
+        <div class="bg-[#0F141B] p-8">
+          <p class="font-mono text-xs text-[#586173]">01</p>
+          <h3 class="font-display mt-4 text-xl font-semibold">Scrape</h3>
+          <p class="mt-3 text-sm leading-relaxed text-[#8B93A0]">Pulls live listings from Google Maps for every niche and city you specify, then dedupes across niches.</p>
+        </div>
+        <div class="bg-[#0F141B] p-8">
+          <p class="font-mono text-xs text-[#586173]">02</p>
+          <h3 class="font-display mt-4 text-xl font-semibold">Audit</h3>
+          <p class="mt-3 text-sm leading-relaxed text-[#8B93A0]">Visits each business's actual website and runs the six checks above against it.</p>
+        </div>
+        <div class="bg-[#0F141B] p-8">
+          <p class="font-mono text-xs text-[#586173]">03</p>
+          <h3 class="font-display mt-4 text-xl font-semibold">Score &amp; pitch</h3>
+          <p class="mt-3 text-sm leading-relaxed text-[#8B93A0]">Ranks every lead by opportunity and writes out the reasons, ready to drop into your outreach message.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXAMPLE OUTPUT ================= -->
+    <section id="examples" class="py-24">
+      <div class="max-w-lg">
+        <p class="font-mono text-sm text-[#33D6A6]">Example output</p>
+        <h2 class="font-display mt-3 text-3xl font-semibold sm:text-4xl">What a scan actually returns</h2>
+        <p class="mt-4 text-[#8B93A0]">Illustrative rows in the shape of a real CSV export — your own run will look like this, sorted by score.</p>
+      </div>
+      <div class="mt-12 overflow-hidden rounded-2xl border border-white/10">
+        <div class="grid grid-cols-[1.4fr_1fr_0.6fr] gap-4 bg-[#0F141B] px-6 py-3 font-mono text-xs text-[#586173]">
+          <span>business</span><span>recommended service</span><span>score</span>
+        </div>
+        <div class="grid grid-cols-[1.4fr_1fr_0.6fr] items-center gap-4 border-t border-white/10 bg-[#0A0D12] px-6 py-4">
+          <div><p class="font-medium">Green Leaf Salon</p><p class="text-xs text-[#8B93A0]">Salon · no website found</p></div>
+          <span class="text-sm">Website</span>
+          <span class="font-mono font-semibold text-[#FF5A4E]">62 pts</span>
+        </div>
+        <div class="grid grid-cols-[1.4fr_1fr_0.6fr] items-center gap-4 border-t border-white/10 bg-[#0A0D12] px-6 py-4">
+          <div><p class="font-medium">Rajdhani Tiffin Service</p><p class="text-xs text-[#8B93A0]">Restaurant · site not mobile-friendly, HTTP only</p></div>
+          <span class="text-sm">Website Redesign</span>
+          <span class="font-mono font-semibold text-[#FFB74D]">44 pts</span>
+        </div>
+        <div class="grid grid-cols-[1.4fr_1fr_0.6fr] items-center gap-4 border-t border-white/10 bg-[#0A0D12] px-6 py-4">
+          <div><p class="font-medium">FitZone Gym</p><p class="text-xs text-[#8B93A0]">Gym · no booking flow, category fits an app</p></div>
+          <span class="text-sm">Android App</span>
+          <span class="font-mono font-semibold text-[#FFB74D]">31 pts</span>
+        </div>
+        <div class="grid grid-cols-[1.4fr_1fr_0.6fr] items-center gap-4 border-t border-white/10 bg-[#0A0D12] px-6 py-4">
+          <div><p class="font-medium">Clarity Eye Care</p><p class="text-xs text-[#8B93A0]">Clinic · site healthy, missing schema markup</p></div>
+          <span class="text-sm">SEO</span>
+          <span class="font-mono font-semibold text-[#33D6A6]">14 pts</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RUN / TIERS ================= -->
+    <section id="run" class="py-24">
+      <div class="max-w-lg">
+        <p class="font-mono text-sm text-[#33D6A6]">Get started</p>
+        <h2 class="font-display mt-3 text-3xl font-semibold sm:text-4xl">Run it yourself, or have Devtacet run it for you</h2>
+      </div>
+
+      <div class="mt-12 grid gap-5 lg:grid-cols-2">
+        <div class="rounded-2xl border border-white/10 bg-[#0F141B] p-8">
+          <h3 class="font-display text-lg font-semibold">Self-hosted</h3>
+          <p class="mt-1 text-sm text-[#8B93A0]">Free · your own machine, your own data</p>
+          <div class="mt-6 rounded-xl border border-white/10 bg-[#0A0D12] p-5 font-mono text-sm leading-8">
+            <p class="text-[#586173]"># scrape, audit and score in one run</p>
+            <p><span class="text-[#33D6A6]">$</span> python main.py <span class="text-[#FFB74D]">--niches</span> "dentists,restaurants,gyms" <span class="text-[#FFB74D]">--city</span> "Lucknow"</p>
+            <p class="mt-3 text-[#586173]"># or launch the dashboard</p>
+            <p><span class="text-[#33D6A6]">$</span> streamlit run app.py</p>
+          </div>
+          <a href="https://github.com/Leo10401/my-lead" class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#33D6A6]">
+            Get it on GitHub <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+          </a>
+        </div>
+
+        <div class="rounded-2xl border border-[#33D6A6]/30 bg-[#0F141B] p-8">
+          <h3 class="font-display text-lg font-semibold">Devtacet-run</h3>
+          <p class="mt-1 text-sm text-[#8B93A0]">We scan your target market and hand you the ranked list, no setup required</p>
+          <ul class="mt-6 space-y-3 text-sm text-[#8B93A0]">
+            <li class="flex gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-[#33D6A6]"></i> Custom niche and city scan</li>
+            <li class="flex gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-[#33D6A6]"></i> Ranked lead list with pitch copy</li>
+            <li class="flex gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-[#33D6A6]"></i> Delivered as a CSV or dashboard link</li>
+          </ul>
+          <a href="https://devtacet.me" class="mt-6 inline-flex items-center gap-2 rounded-full bg-[#33D6A6] px-5 py-2.5 text-sm font-semibold text-[#0A0D12]">
+            Talk to Devtacet
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-10 text-sm text-[#586173] sm:flex-row">
+      <div class="flex items-center gap-2">
+        <span class="h-2 w-2 rounded-full bg-[#33D6A6]"></span>
+        <span class="font-display font-medium text-[#ECEAE2]">my lead</span> — a Devtacet project
+      </div>
+      <div class="flex gap-6">
+        <a href="#how" class="hover:text-[#ECEAE2]">How it works</a>
+        <a href="https://github.com/Leo10401/my-lead" class="hover:text-[#ECEAE2]">GitHub</a>
+        <a href="https://devtacet.me" class="hover:text-[#ECEAE2]">devtacet.me</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>
