@@ -78,6 +78,20 @@ def _badge(service: str) -> str:
     return f":{color}-badge[{service}]"
 
 
+def clean_phone_for_whatsapp(phone: str, default_country_code: str = "91") -> str:
+    """Clean phone number into international wa.me format digits only."""
+    import re
+    if not phone or str(phone).lower() == "nan":
+        return ""
+    digits = re.sub(r"\D", "", str(phone))
+    if not digits:
+        return ""
+    # If 10 digits (standard Indian mobile/local), prepend default country code
+    if len(digits) == 10:
+        digits = default_country_code + digits
+    return digits
+
+
 def generate_pitch(lead: pd.Series) -> str:
     name    = lead.get("name", "Business Owner")
     service = lead.get("recommended_service", "Digital Services")
@@ -621,8 +635,25 @@ with tab_explore:
                             )
 
                         phone_val = str(row.get("phone", "") or "").strip()
+                        wa_digits = clean_phone_for_whatsapp(phone_val)
+                        if wa_digits:
+                            import urllib.parse
+                            prefilled_text = urllib.parse.quote(generate_pitch(row))
+                            wa_url = f"https://wa.me/{wa_digits}?text={prefilled_text}"
+                            st.link_button(
+                                "WhatsApp",
+                                url=wa_url,
+                                icon=":material/chat:",
+                            )
+
                         if phone_val and phone_val.lower() != "nan":
-                            st.caption(f":material/call: `{phone_val}`")
+                            # Strip non-digit chars except leading plus for dialer
+                            import re
+                            dialer_num = re.sub(r"[^\d+]", "", phone_val)
+                            st.markdown(
+                                f":material/call: <a href='tel:{dialer_num}' style='color:inherit;text-decoration:underline;font-family:monospace;font-size:0.85rem;'>{phone_val}</a>",
+                                unsafe_allow_html=True,
+                            )
 
                     with st.expander(
                         f"Generate outreach pitch for {row.get('name')}",
